@@ -6,16 +6,23 @@ import { AppComponent } from './app.component';
 import { ActivityComponent } from './activity/activity.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-//import {NG_VALIDATORS} from '@angular/forms';
-//import { hourValidatorDirective } from './shared/hourValidatorDirective';
+import {AngularFireModule} from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { UserComponent } from './user/user.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ActivityComponent,
-   // Validators,
-   // hourValidatorDirective
-  ],
+    UserComponent,
+    //AngularFirestoreModule,
+    //AngularFireStorageModule,
+    //AngularFireDatabaseModule
+     ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,7 +30,10 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     ReactiveFormsModule,
     NgbModule,
     //hourValidatorDirective,
-    NgxMaterialTimepickerModule
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+     NgxMaterialTimepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

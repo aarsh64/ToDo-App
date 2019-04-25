@@ -55,7 +55,7 @@
                                         "scheme": "file"
                                     },
                                     "enabled": true,
-                                    "label": "~/ToDo"
+                                    "label": "/home/pk/ToDo"
                                 },
                                 {
                                     "id": "vscode.menubar.separator"
@@ -812,7 +812,8 @@
                     },
                     {
                         "id": "workbench.action.terminal.split",
-                        "label": "&&Split Terminal"
+                        "label": "&&Split Terminal",
+                        "enabled": false
                     },
                     {
                         "id": "vscode.menubar.separator"
@@ -1363,5 +1364,19 @@
     },
     "theme": "vs-dark",
     "themeBackground": "#1e1e1e",
-    "pickerWorkingDir": "/home/pk"
+    "pickerWorkingDir": "/home/pk",
+    "windowsState": {
+        "lastActiveWindow": {
+            "folder": "file:///home/pk/ToDo",
+            "backupPath": "/home/pk/ToDo/~/.vscode-root/Backups/9ef6cfddc3c6c319dd0248cf94fed039",
+            "uiState": {
+                "mode": 0,
+                "x": 65,
+                "y": 24,
+                "width": 1301,
+                "height": 744
+            }
+        },
+        "openedWindows": []
+    }
 }

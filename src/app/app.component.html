@@ -1,4 +1,23 @@
+<!-- <div>
 
-<div class="container">
-    <app-activity></app-activity>
+  <div *ngIf="afAuth.user | async as user; else showLogin">
+   
+    <div class="container">
+      <app-activity></app-activity>
+    </div>
+
+    <button class="btn btn-primary" (click)="logout()">Logout</button>
+  </div>
+  <ng-template #showLogin>
+    <p>Please login to get the data.</p>
+    <button class="btn btn-primary" (click)="login()">Login with Google</button>
+  </ng-template> -->
+<div>
+  <nav>
+    <!-- <a routerLink="/crisis-center" routerLinkActive="active">Crisis Center</a> -->
+     <a routerLink="/login" routerLinkActive="active"></a>
+  </nav>
+<router-outlet></router-outlet>
+
 </div>
+  

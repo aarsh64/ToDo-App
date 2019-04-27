@@ -141,7 +141,7 @@ export class ActivityComponent implements OnInit {
     //.............Moving deleted document to doneActivities collection.................
 
     this.db.collection('doneActivities').add({
-      name: x.Name,
+      Name: x.Name,
       Time: x.Time
     });
 

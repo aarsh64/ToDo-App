@@ -12,3 +12,6 @@ export const environment = {
   }
 };
 // firebase.initializeApp(config);
+
+const emailid=document.getElementById('txtEmail');
+const password=document.getElementById('txtPassword');

@@ -18,8 +18,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import {AuthService} from '/home/pk/ToDo/src/app/auth.service';
 const routes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
-{ path: 'login', component: UserComponent },
-{ path: 'userdata', canActivate:[ AuthGuard], component: ActivityComponent }];
+                        { path: 'login', component: UserComponent },
+                        { path: 'userdata', canActivate:[ AuthGuard], component: ActivityComponent,UserComponent }];
 
 
 @NgModule({
@@ -42,7 +42,7 @@ const routes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     AngularFireStorageModule,
     AngularFireAuthModule,
     NgxMaterialTimepickerModule,
-    RouterModule.forRoot(routes), 
+    RouterModule.forRoot(routes,{useHash:true}) 
   ],
   providers: [AuthGuard,AuthService],
   bootstrap: [AppComponent]

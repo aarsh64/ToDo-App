@@ -1,38 +1,42 @@
-<h2 class="card text-white bg-primary mb-3" style="max-width: 30rem;text-align: center">MY ToDo LIST.  </h2>
+<h2 class="card text-white bg-primary mb-3" style="max-width: 30rem;text-align: center">MY ToDo LIST. </h2>
 
-<nav   class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-  
-      <ngb-tabset>
-          <ngb-tab title="Left Activities!">
-            <ng-template ngbTabContent> 
-               <ul class="navbar-nav mr-auto">
-                <!-- <li class="nav-item active"><a class="nav-link" href="#" >Left Activities</a></li> -->
-              </ul>
-            <ul  class="list-group">
-  <li class="list-group-item list-group-item-primary" *ngFor="let x of activityMap,let i=index" (click)="onClick(i,x)"  >
-            <span ><input  class="form-check-input" type="checkbox">{{x.Name}}</span> <span><b>  on </b></span>{{x.Time.hour}}:{{x.Time.minute}}
+
+    <ngb-tabset>
+      <ngb-tab title="Left Activities!">
+        <ng-template ngbTabContent>
+          <ul class="navbar-nav mr-auto">
+            <!-- <li class="nav-item active"><a class="nav-link" href="#" >Left Activities</a></li> -->
+          </ul>
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-primary" *ngFor="let x of activityMap,let i=index"
+              (click)="onClick(i,x)">
+              <span><input class="form-check-input" type="checkbox">{{x.Name}}</span> <span><b> on
+                </b></span>{{x.Time.hour}}:{{x.Time.minute}}
             </li>
-        </ul>
-      </ng-template>
-    </ngb-tab>
- 
-    
-        <ngb-tab title="Done Activities!">
-          <ng-template ngbTabContent>
-  <!-- <li class="nav-item active"><a  class="nav-link" href="#"></a></li> -->
-        <ul  class="list-group">
-              <li class="list-group-item list-group-item-success" *ngFor="let y of deleteMap,let e=index" (click)="delItems(y,e)" >
-              <span ><del><input  class="form-check-input" type="checkbox"  >{{y.Name}}</del></span> <span><b><del>  on</del>  </b></span><del> {{y.Time.hour}}:{{y.Time.minute}}</del>
-              </li>
-        </ul>
-      </ng-template>
-    </ngb-tab>
+          </ul>
+        </ng-template>
+      </ngb-tab>
+
+
+      <ngb-tab title="Done Activities!">
+        <ng-template ngbTabContent>
+          <!-- <li class="nav-item active"><a  class="nav-link" href="#"></a></li> -->
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-success" *ngFor="let y of deleteMap,let e=index"
+              (click)="delItems(y,e)">
+              <span><del><input class="form-check-input" type="checkbox">{{y.Name}}</del></span> <span><b><del> on</del>
+                </b></span><del> {{y.Time.hour}}:{{y.Time.minute}}</del>
+            </li>
+          </ul>
+        </ng-template>
+      </ngb-tab>
     </ngb-tabset>
 
 
 
-</div>
+  </div>
 </nav>
 
 
@@ -40,29 +44,29 @@
 
 <!-- To Submit new Activities. -->
 <br>
-<form [formGroup]="myform" novalidate >
-  <div class="form-group" >
-     <!-- <label style="float: left;">New Activity:</label>  -->
-  
-     <input  style="width: 50%;margin-top:25px; float:left;" id="t1" class="form-control" formControlName="name" type="text" #ac placeholder="Enter the Activity" required />
-     <ngb-timepicker size="small" style="width:50%;float:left;" id="t2" formControlName="time" ></ngb-timepicker>
-  
-   </div> 
+<form [formGroup]="myform" novalidate>
+  <div class="form-group">
+    <!-- <label style="float: left;">New Activity:</label>  -->
+
+    <input style="width: 50%;margin-top:25px; float:left;" id="t1" class="form-control" formControlName="name"
+      type="text" #ac placeholder="Enter the Activity" required />
+    <ngb-timepicker size="small" style="width:50%;float:left;" id="t2" formControlName="time"></ngb-timepicker>
+
+  </div>
   <div class="form-control-feedback" *ngIf="this.myform.controls.name.errors">
-   
+
     <!-- <p *ngIf="this.myform.controls.name.errors.required">Both fields can't be left empty!!</p> -->
-  
-    </div>
- 
-  
-  
-   <div class="form-control-feedback" *ngIf="this.myform.controls.time.errors">
-      <!-- <p *ngIf="this.myform.controls.time.errors">The field can't be left or earlier than current time!</p> -->
-   </div>
-   <!-- <p *ngIf="email.errors.emailDomain">Email must be on the codecraft.tv domain</p> -->
-     <button type="submit"class="btn btn-primary" [disabled]="!(this.myform.controls.name.valid && this.myform.controls.time.valid )"  type="submit" (click)="apendAct()" > Submit </button>
-    
-</form>  
+
+  </div>
 
 
- 
+
+  <div class="form-control-feedback" *ngIf="this.myform.controls.time.errors">
+    <!-- <p *ngIf="this.myform.controls.time.errors">The field can't be left or earlier than current time!</p> -->
+  </div>
+  <!-- <p *ngIf="email.errors.emailDomain">Email must be on the codecraft.tv domain</p> -->
+  <button type="submit" class="btn btn-primary"
+    [disabled]="!(this.myform.controls.name.valid && this.myform.controls.time.valid )" type="submit"
+    (click)="apendAct()"> Submit </button>
+  <a routerLink='/login' class="btn btn-primary" routerLinkActive="active">Logout</a>
+</form>

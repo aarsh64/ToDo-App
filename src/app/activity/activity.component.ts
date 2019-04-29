@@ -12,12 +12,12 @@ import { isError } from 'util';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 //import { ConsoleReporter } from 'jasmine';
 //import { ConsoleReporter } from 'jasmine';
-
 @Component({
   selector: 'app-activity,',
   templateUrl: './activity.component.html',
   styleUrls: ['./activity.component.css']
 })
+
 export class ActivityComponent implements OnInit {
 
 
@@ -37,6 +37,7 @@ export class ActivityComponent implements OnInit {
   f: [];
   
   private taskDoc: AngularFirestoreDocument;
+  afAuth: any;
   constructor(private db: AngularFirestore) {
     this.db.collection("activities").get().subscribe((querySnapshot) => {
       querySnapshot.forEach((doc) => {
@@ -181,8 +182,7 @@ export class ActivityComponent implements OnInit {
 
 
   }
-
-
+ 
 
   //..............To add activities in the list....................
 

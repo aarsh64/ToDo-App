@@ -55,7 +55,7 @@
                                         "scheme": "file"
                                     },
                                     "enabled": true,
-                                    "label": "~/ToDo"
+                                    "label": "/home/pk/ToDo"
                                 },
                                 {
                                     "id": "vscode.menubar.separator"

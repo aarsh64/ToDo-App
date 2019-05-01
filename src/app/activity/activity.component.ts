@@ -1,4 +1,4 @@
-import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
+import { Component, OnInit, SystemJsNgModuleLoader, QueryList, Query } from '@angular/core';
 import { Activity } from '/home/pk/ToDo/src/app/activity';
 import { Activities } from '/home/pk/ToDo/src/activities';
 import { splitClasses } from '@angular/compiler';
@@ -10,7 +10,15 @@ import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { isError } from 'util';
 //import { hourValidatorDirective } from '../shared/hourValidatorDirective';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
-//import { ConsoleReporter } from 'jasmine';
+import { FirebaseAuth } from '@angular/fire';
+import { UserComponent } from '../user/user.component';
+import { auth } from 'firebase';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { useAnimation } from '@angular/animations';
+import { Subject } from 'rxjs';
+import { switchMap } from 'rxjs/operator/switchMap';
+import { map } from 'rxjs/operators';
+import { Time } from '@angular/common/src/common';
 //import { ConsoleReporter } from 'jasmine';
 @Component({
   selector: 'app-activity,',
@@ -18,11 +26,12 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
   styleUrls: ['./activity.component.css']
 })
 
+
 export class ActivityComponent implements OnInit {
 
 
 
-  activityMap = []; //used to get all the activities that are stored in FireBase activities collection... 
+  activityMap: any = []; //used to get all the activities that are stored in FireBase activities collection... 
   deleteMap = [];   //used to get all the activities that are moved to doneActivities collection....
   myform: FormGroup;
   allActivities = Activities;   //assigning all the activities to allActivities...
@@ -34,43 +43,40 @@ export class ActivityComponent implements OnInit {
   systemHour = this.timelap.getHours();
   item: any;
   activities: any;
-  f: [];
-  
-  private taskDoc: AngularFirestoreDocument;
-  afAuth: any;
-  constructor(private db: AngularFirestore) {
-    this.db.collection("activities").get().subscribe((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log('id is:', `${doc.id} => ${doc.data()}`, doc.data());
-        this.activityMap.push({ id: doc.id, Name: doc.data().Name, Time: doc.data().Time });
-        console.log('aMap value is:', this.activityMap);
+  usersCustomerId: string;
+  auth: any;
+  authID: any;
+  final: any;
+  qAll: any;
+  constructor(private afAuth: AngularFireAuth, private db: AngularFirestore) {
 
-      });
-    });
-  
-    this.db.collection("doneActivities").get().subscribe((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log('id is:', `${doc.id} => ${doc.data()}`, doc.data());
-        this.deleteMap.push({ id: doc.id, Name: doc.data().Name, Time: doc.data().Time });
-        console.log('aMap value is:', this.deleteMap);
-  
-      });
-    });
-  
-  
-  
+
+    //To get uId of the user.....
+    this.afAuth.authState.subscribe(auth => {
+      if (auth) {
+        name: auth.displayName;
+        this.usersCustomerId = auth.uid;
+        console.log('uID is:', auth.uid);
+
+
+
+        db.collection<Activity>("activities", ref => ref.where("uid", '==', auth.uid)
+        
+        )
+      };
+    }
+    )
+
   }
-  
-
   ngOnInit() {
+
+
 
     //.................Form Validation part.......................
     this.myform = new FormGroup({
       name: new FormControl('', Validators.required),
       time: new FormControl('', [Validators.required, this.hourValidator])
     })
-
-    // console.log(this.myform.value.time.hours);
 
     {
       this.findIndex = this.activityMap.findIndex(obj => obj.Time.hour < this.systemHour);
@@ -79,16 +85,9 @@ export class ActivityComponent implements OnInit {
         this.activityMap.splice(this.findIndex, 1);
         this.findIndex = this.activityMap.findIndex(obj => obj.Time.hour < this.systemHour);
         console.log(this.findIndex);
-
       }
-
     }
-
-
-
-
   }
-
 
   //.............To Validate that user cant input past time in ngTimePikcer in Form...................
 
@@ -116,7 +115,7 @@ export class ActivityComponent implements OnInit {
     console.log("selected index:", i);
     console.log('x is:', x);
     //...........To remove the activity by clicking on it.........
-    
+
     this.doneActs = this.activityMap.splice(i, 1);
     console.log(typeof this.doneActs);
     this.deleteMap.push({ id: x.id, Name: x.Name, Time: { hour: x.Time.hour, minute: x.Time.minute } });
@@ -148,13 +147,12 @@ export class ActivityComponent implements OnInit {
 
 
   }
-
   //................To delete the activity compeletly from the list..................
 
   delItems(y: any, e: number) {
 
 
-   
+
     //   this.db.collection("doneActivities").get().subscribe((querySnapshot) => {
     //     querySnapshot.forEach((y) => {
     //       console.log('id is:', `${y.id} => ${y.data()}`, y.data());
@@ -179,18 +177,12 @@ export class ActivityComponent implements OnInit {
     //...........To delete the selected item from HTML page..............
 
     this.deleteMap.splice(e, 1);
-
-
   }
- 
-
   //..............To add activities in the list....................
-
-
   apendAct() {
 
 
-    this.activityMap.push({ Name: this.myform.value.Name, Time: { hour: this.myform.value.time.hour, minutes: this.myform.value.time.minute } });
+    this.activityMap.push({ Name: this.myform.value.name, Time: { hour: this.myform.value.time.hour, minute: this.myform.value.time.minute } });
     console.log(this.myform.value);
 
 
@@ -201,23 +193,7 @@ export class ActivityComponent implements OnInit {
       Name: this.myform.value.name,
       Time: this.myform.value.time
     });
-
-
     //...............After getting input the form will be reset...............
     this.myform.reset();
-    
-    
-    
-    // }
-    // this.db.collection('activity').add({Name:this.myform.value.Activity,Time:{hours: this.myform.value.time.hour, minutes: this.myform.value.time.minute}});
-
-
-
   }
-
-
-
-
-
-
 }

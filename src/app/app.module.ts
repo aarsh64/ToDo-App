@@ -16,10 +16,10 @@ import { auth } from 'firebase/app';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
-import {AuthService} from '/home/pk/ToDo/src/app/auth.service';
-const routes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
-                        { path: 'login', component: UserComponent },
-                        { path: 'userdata', canActivate:[ AuthGuard], component: ActivityComponent,UserComponent }];
+import { AuthService } from '/home/pk/ToDo/src/app/auth.service';
+const routes: Routes = [{ path: '', redirectTo: 'login-logout', pathMatch: 'full' },
+                        { path: 'login-logout', component: UserComponent },
+                        { path: 'userdata', canActivate: [AuthGuard], component: ActivityComponent }];
 
 
 @NgModule({
@@ -42,9 +42,9 @@ const routes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     AngularFireStorageModule,
     AngularFireAuthModule,
     NgxMaterialTimepickerModule,
-    RouterModule.forRoot(routes,{useHash:true}) 
+    RouterModule.forRoot(routes, { useHash: true })
   ],
-  providers: [AuthGuard,AuthService],
+  providers: [AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

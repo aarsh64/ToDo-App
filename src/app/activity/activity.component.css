@@ -1,15 +1,19 @@
-li:hover{
-
-    color:rgb(15, 15, 15);
-    background-color:white;
-    
+li:hover {
+  color: rgb(15, 15, 15);
+  background-color: white;
 }
-button:hover{
-    background-color:green;
+/* button:hover {
+  background-color: green;
+} */
+.topright {
+  position: absolute;
+  top: 0px;
+  right: 08px;
+  font-size: 18px;
 }
-.container{
-    width:500px;
-    margin-right: auto;
-    margin-left: auto;
-    
-}
+.topleft {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size: 18px;
+  }

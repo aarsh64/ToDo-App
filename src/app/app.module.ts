@@ -44,7 +44,7 @@ const routes: Routes = [{ path: '', redirectTo: 'login-logout', pathMatch: 'full
     NgxMaterialTimepickerModule,
     RouterModule.forRoot(routes, { useHash: true })
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [AuthGuard, AuthService,UserComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

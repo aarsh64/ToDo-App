@@ -37,13 +37,15 @@ import { Subject } from "rxjs";
 import { switchMap } from "rxjs/operator/switchMap";
 import { user } from "../user/user";
 import {Router} from '@angular/router';
+
 @Component({
   selector: "app-activity",
   templateUrl: "./activity.component.html",
   styleUrls: ["./activity.component.css"]
 })
+
 export class ActivityComponent implements OnInit {
-@Input() email:string;
+  @Input() email:string;
   activityMap = []; //used to get all the activities that are stored in FireBase activities collection...
   deleteMap = []; //used to get all the activities that are moved to doneActivities collection....
   myform: FormGroup;
@@ -58,7 +60,7 @@ export class ActivityComponent implements OnInit {
   activities: any;
   usersCustomerId: string;
   auth: any;
-  authID: any;
+  authID: string;
   final: any;
   constructor(private afAuth: AngularFireAuth, private db: AngularFirestore,private router:Router) {
     //To get uId of the user.....

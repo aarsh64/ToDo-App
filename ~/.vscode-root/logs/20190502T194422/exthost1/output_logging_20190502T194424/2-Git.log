@@ -1,0 +1,106 @@
+Looking for git in: git
+Using git 2.7.4 from git
+> git rev-parse --show-toplevel
+> git config --get commit.template
+Open repository: /home/pk/ToDo
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git check-ignore -z --stdin
+> git show :src/app/auth.service.ts
+> git ls-files --stage -- src/app/
+> git show :src/app/auth.service.ts
+> git ls-files --stage -- src/app/
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git check-ignore -z --stdin
+> git show :src/app/auth.service.ts
+> git ls-files --stage -- src/app/
+> git check-ignore -z --stdin
+> git show :src/app/user/user.component.ts
+> git ls-files --stage -- src/app/user/
+> git show :src/app/user/user.component.spec.ts
+> git ls-files --stage -- src/app/user/
+> git check-ignore -z --stdin
+> git show :src/app/user/user.component.ts
+> git ls-files --stage -- src/app/user/
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git show :src/app/user/user.component.ts
+> git ls-files --stage -- src/app/user/
+> git check-ignore -z --stdin
+> git check-ignore -z --stdin
+> git show :src/app/auth/auth.guard.ts
+> git ls-files --stage -- src/app/auth/
+> git check-ignore -z --stdin
+> git show :src/app/activity/activity.component.ts
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git check-ignore -z --stdin
+> git show :src/app/user/user.component.ts
+> git ls-files --stage -- src/app/user/
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/activity/activity.component.html
+> git check-ignore -z --stdin
+> git show :src/app/user/user.component.html
+> git ls-files --stage -- src/app/user/
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/activity/activity.component.html
+> git show :src/app/activity/activity.component.ts
+> git show :tsconfig.json
+> git check-ignore -z --stdin
+> git show :src/app/auth.service.ts
+> git ls-files --stage -- src/app/
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/activity/activity.component.html
+> git show :src/app/activity/activity.component.ts
+> git show :tsconfig.json
+> git show :node_modules/@angular/router/router.d.ts
+> git ls-files --stage -- node_modules/@angular/router/
+> git check-ignore -z --stdin
+> git check-ignore -z --stdin
+> git show :src/app/auth.service.ts
+> git ls-files --stage -- src/app/
+> git show :src/app/user/user.component.ts
+> git ls-files --stage -- src/app/user/
+> git check-ignore -z --stdin
+> git show :src/app/activity/activity.component.html
+> git show :node_modules/rxjs/internal/Observable.d.ts
+> git ls-files --stage -- node_modules/rxjs/internal/
+> git check-ignore -z --stdin
+> git check-ignore -z --stdin
+> git check-ignore -z --stdin
+> git show :node_modules/@angular/router/router.d.ts
+> git ls-files --stage -- node_modules/@angular/router/
+> git check-ignore -z --stdin
+> git show :src/app/app.component.ts
+> git show :src/app/auth/auth.guard.ts
+> git ls-files --stage -- src/app/auth/
+> git show :src/app/app.component.html
+> git show :node_modules/@angular/router/router.d.ts
+> git ls-files --stage -- node_modules/@angular/router/
+> git show :src/app/app.component.ts
+> git show :src/app/activity/activity.component.html
+> git show :src/app/app.module.ts
+> git show :src/app/auth.service.ts
+> git ls-files --stage -- src/app/
+> git show :src/app/activity/activity.component.ts

@@ -2,16 +2,15 @@
   <a routerLink="/login-logout" routerLinkActive="active"></a>
 </div>
 <div class="container" *ngIf="afAuth.user | async as user">
- <div>
+ <div class="top">
  
   <h2
     class="card text-white bg-primary mb-3"
-    style="max-width:40px,text-align: center"
-  
-    >
-    Welcome:{{ user.email }}
+    style="max-width: 300rem;text-align: center" 
+  >
+    Welcome: {{ user.email }}
   </h2>
-</div>
+</div>  
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ngb-tabset>
@@ -111,7 +110,7 @@
         <button 
           type="button"
           class="btn btn-danger"
-          ngbTooltip="Tooltip on bottom"
+          ngbPopover="You're just one click" triggers="mouseenter:mouseleave" popoverTitle="Wanna Logout?"
           (click)="doLogout()"
         >
           <b>Logout</b>

@@ -17,8 +17,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from '/home/pk/ToDo/src/app/auth.service';
-const routes: Routes = [{ path: '', redirectTo: 'login-logout', pathMatch: 'full' },
-                        { path: 'login-logout', component: UserComponent },
+const routes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
+                        { path: 'login', component: UserComponent },
                         { path: 'userdata', canActivate: [AuthGuard], component: ActivityComponent }];
 
 
@@ -42,7 +42,7 @@ const routes: Routes = [{ path: '', redirectTo: 'login-logout', pathMatch: 'full
     AngularFireStorageModule,
     AngularFireAuthModule,
     NgxMaterialTimepickerModule,
-    RouterModule.forRoot(routes, { useHash: true })
+    RouterModule.forRoot(routes)
   ],
   providers: [AuthGuard, AuthService,UserComponent],
   bootstrap: [AppComponent]

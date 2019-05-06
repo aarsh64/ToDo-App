@@ -8,12 +8,43 @@ li:hover {
 .topright {
   position: absolute;
   top: 0px;
-  right: 08px;
-  font-size: 18px;
+  right: 0px;
+  font-size: 15px;
 }
-.topleft {
+
+
+.activityContainer{
+  top:500px;
+  widows: 300px;
+  margin-right:400px;
+  left:50px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+/* .almostleft{
+  position: absolute;
+  top:75px;
+  left:px;
+} */
+.centerright {
     position: absolute;
-    top: 8px;
-    left: 16px;
-    font-size: 16px;
+    top: 60px;
+    right: 30px;
+    font-size: 15px;
+    text-align:left
+  }
+  .topleft{
+    position: absolute;;
+    top:0px;
+    left:0px;
+    font-size: 15px;
+    width: 300px;
+
+  }
+  .submitCard{
+    left:50px;
+  }
+  .conainer1 {
+    margin-left: 100%;
+    width: 30%;
   }

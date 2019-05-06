@@ -1,0 +1,2 @@
+[2019-05-04 16:07:39.119] [renderer1] [error] net::ERR_INTERNET_DISCONNECTED: {1}
+[2019-05-04 16:08:05.242] [renderer1] [error] Inotify limit reached (ENOSPC)

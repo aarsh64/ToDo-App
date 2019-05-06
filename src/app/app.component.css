@@ -1,9 +1,11 @@
-.container{
-    width:500px;
+/* .container{
+    width:10000px;
     margin-right: auto;
     margin-left: auto;
-    
-}
-.container1{
-    margin-left: 100%;
-} 
+    border-color: black   
+} */
+.bottomright{
+    position: fixed;
+    bottom:0px;
+    right:20px;
+  }

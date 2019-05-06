@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,11 +15,16 @@ export class AppComponent {
   title = 'To Do App';
 
 
-  constructor(public afAuth: AngularFireAuth) {
+  constructor(public afAuth: AngularFireAuth,private router:Router) {
   }
 
   
-  
-  
+  doLogout() {
+    this.afAuth.auth.signOut();
+    this.router.navigate(["/login-logout"]);
+  }
 }
+  
+  
+
 

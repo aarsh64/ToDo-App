@@ -2,6 +2,7 @@
     "telemetry.machineId": "e54ac1575232b8f9c8c78ad46fdc9d5f31e0beaab02b121bda3facbffd13f29f",
     "openedPathsList": {
         "workspaces3": [
+            "file:///home/pk/ToDo-App",
             "file:///home/pk/ToDo"
         ],
         "files2": []
@@ -49,13 +50,24 @@
                                     "id": "openRecentFolder",
                                     "uri": {
                                         "$mid": 1,
-                                        "fsPath": "/home/pk/ToDo",
+                                        "fsPath": "/home/pk/ToDo-App",
+                                        "external": "file:///home/pk/ToDo-App",
+                                        "path": "/home/pk/ToDo-App",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "~/ToDo-App"
+                                },
+                                {
+                                    "id": "openRecentFolder",
+                                    "uri": {
+                                        "$mid": 1,
                                         "external": "file:///home/pk/ToDo",
                                         "path": "/home/pk/ToDo",
                                         "scheme": "file"
                                     },
                                     "enabled": true,
-                                    "label": "/home/pk/ToDo"
+                                    "label": "~/ToDo"
                                 },
                                 {
                                     "id": "vscode.menubar.separator"
@@ -1367,8 +1379,8 @@
     "pickerWorkingDir": "/home/pk",
     "windowsState": {
         "lastActiveWindow": {
-            "folder": "file:///home/pk/ToDo",
-            "backupPath": "/home/pk/ToDo/~/.vscode-root/Backups/9ef6cfddc3c6c319dd0248cf94fed039",
+            "folder": "file:///home/pk/ToDo-App",
+            "backupPath": "/home/pk/ToDo-App/~/.vscode-root/Backups/599f40ff84ceab6f3c16d437c8470e7e",
             "uiState": {
                 "mode": 0,
                 "x": 65,

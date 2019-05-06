@@ -24,14 +24,15 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 export class UserComponent implements OnInit {
 
   userForm: FormGroup;
- // email=this.userForm.value.email;
+  //email=this.userForm.value.email;
   usersCustomerId: string;
   constructor(private afAuth: AngularFireAuth,
     private router: Router, private authService: AuthService, private db: AngularFirestore) {
 
   }
-  
+
   ngOnInit() {
+  
     this.userForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
@@ -39,26 +40,20 @@ export class UserComponent implements OnInit {
   }
 
   tryLogin() {
-
-    // this.db.collection('users').add({
-    //   Name: this.userForm.value.name,
-    //   Time: this.userForm.value.time,
-    //   uid: this.usersCustomerId
-    // });
-
-
+console.log('Entered in Login');
     this.afAuth.auth.signInWithEmailAndPassword(this.userForm.value.email, this.userForm.value.password).then(
       (success) => {
         console.log('logged in successfullty.');
         this.router.navigate(['/userdata']);
         console.log('promise is accepted.');
       });
-    this.userForm.reset();
+      console.log('just get out of it..');
+      this.userForm.reset();
   }
 
   signUp() {
 
-      //Add Users Credentials to the 'users' database in FireBase....
+    //Add Users Credentials to the 'users' database in FireBase....
     this.db.collection('users').add({
       email: this.userForm.value.email,
       password: this.userForm.value.password,
@@ -71,6 +66,6 @@ export class UserComponent implements OnInit {
     );
     this.userForm.reset();
   }
-  
+
 
 }

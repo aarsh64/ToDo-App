@@ -1,7 +1,0 @@
-file:///home/pk/ToDo/src/app/app.component.css
-.container{
-    width:500px;
-    margin-right: auto;
-    margin-left: auto;
-    
-}

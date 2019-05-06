@@ -36,7 +36,7 @@ import { useAnimation } from "@angular/animations";
 import { Subject } from "rxjs";
 import { switchMap } from "rxjs/operator/switchMap";
 import { user } from "../user/user";
-import {Router} from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: "app-activity",
@@ -45,7 +45,7 @@ import {Router} from '@angular/router';
 })
 
 export class ActivityComponent implements OnInit {
-  @Input() email:string;
+  @Input() email: string;
   activityMap = []; //used to get all the activities that are stored in FireBase activities collection...
   deleteMap = []; //used to get all the activities that are moved to doneActivities collection....
   myform: FormGroup;
@@ -62,7 +62,8 @@ export class ActivityComponent implements OnInit {
   auth: any;
   authID: string;
   final: any;
-  constructor(private afAuth: AngularFireAuth, private db: AngularFirestore,private router:Router) {
+  constructor(private afAuth: AngularFireAuth, private db: AngularFirestore, private router: Router) {
+
     //To get uId of the user.....
     this.afAuth.authState.subscribe(auth => {
       if (auth) {
@@ -182,12 +183,12 @@ export class ActivityComponent implements OnInit {
       .collection("activities")
       .doc(x.id)
       .delete()
-      .then(function() {
+      .then(function () {
         console.log(
           "Document successfully deleted from activities collection!"
         );
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.error("Error removing document: ", error);
       });
 
@@ -208,12 +209,12 @@ export class ActivityComponent implements OnInit {
       .collection("doneActivities")
       .doc(y.id)
       .delete()
-      .then(function() {
+      .then(function () {
         console.log(
           "Document successfully deleted from doneActivities collection!"
         );
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.error("Error removing document: ", error);
       });
 
@@ -225,7 +226,7 @@ export class ActivityComponent implements OnInit {
   //..............To add activities in the list....................
   apendAct() {
     this.afAuth.authState.subscribe(auth => {
-      this.usersCustomerId = auth.uid;
+      // this.usersCustomerId = auth.uid;
     });
 
     this.activityMap.push({
@@ -250,6 +251,6 @@ export class ActivityComponent implements OnInit {
 
   doLogout() {
     this.afAuth.auth.signOut();
-    this.router.navigate(["/login-logout"]);
+    this.router.navigate(["/login"]);
   }
 }

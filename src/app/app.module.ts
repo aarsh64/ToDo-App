@@ -19,7 +19,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from '/home/pk/ToDo/src/app/auth.service';
 const routes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
                         { path: 'login', component: UserComponent },
-                        { path: 'userdata', canActivate: [AuthGuard], component: ActivityComponent }];
+                        { path: 'userdata', component: ActivityComponent }];
 
 
 @NgModule({

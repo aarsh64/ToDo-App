@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,7 +16,8 @@ export class AppComponent {
   title = 'To Do App';
 
 
-  constructor(public afAuth: AngularFireAuth,private router:Router) {
+  constructor(private authService: AuthService, public afAuth: AngularFireAuth,private router:Router) {
+    console.log(this.authService.authState, 'uwuwuwuwuwuw')
   }
 
   

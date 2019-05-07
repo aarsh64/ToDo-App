@@ -1,13 +1,13 @@
 <div>
-  <a routerLink="/login-logout" routerLinkActive="active"></a>
+  <a routerLink="/login" routerLinkActive="active"></a>
 </div>
 <div *ngIf="afAuth.user | async as user">
     <nav class="navbar navbar-dark bg-primary">
         <div class="navbar-header">
-      <a class="navbar-brand"  routerLinkActive="active"><b>Dashboard</b></a>
+      <a class="navbar-brand" routerLink="/userdata" routerLinkActive="active"><b>Dashboard</b></a>
     </div>
     <div>
-      <a class="navbar-brand"><b >{{user.email}}</b></a>
+      <a class="navbar-brand"><b>{{user.email}}</b></a>
     </div>
     <!-- <div>
       <a class="navbar-brand" routerLinkActive="active" routerLink="/userdata"><b>Profile</b></a>
@@ -25,18 +25,9 @@
 
 
 <div class="activityContainer" *ngIf="afAuth.user | async as user">
-    <!-- <div class="topleft">
- 
-  <h2
-    class="card text-white bg-primary mb-3"
-    style="max-width: 300rem;text-align: center" 
-  >
-    {{ user.email }},space..
-  </h2>
-</div>   -->
-  <!-- <h3 class="card text-white bg-primary mb-3">Dashboard</h3> -->
+   
   <div class="card">
-    <nav class="navbar< navbar-expand-lg navbar-light bg-light ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
       <div class="almostleft">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ngb-tabset>
@@ -92,36 +83,18 @@
             type="text" #ac placeholder="Enter the Activity" required />
           <ngb-timepicker size="small" style="width:50%;float:left;" formControlName="time"></ngb-timepicker>
         </div>
-        <!-- <div class="form-control-feedback" *ngIf="this.myform.controls.name.errors"> -->
-        <!-- <p *ngIf="this.myform.controls.name.errors.required">Both fields can't be left empty!!</p> -->
-        <!-- </div> -->
-
-        <!-- <div class="form-control-feedback" *ngIf="this.myform.controls.time.errors"> -->
-        <!-- <p *ngIf="this.myform.controls.time.errors">The field can't be left or earlier than current time!</p> -->
-        <!-- </div> -->
-        <!-- <p *ngIf="email.errors.emailDomain">Email must be on the codecraft.tv domain</p> -->
+       
         <button type="submit" class="btn btn-primary" [disabled]="
         !(this.myform.controls.name.valid && this.myform.controls.time.valid)
       " type="submit" (click)="apendAct()">
           Submit
         </button>
-        <!-- <div class="topright">
-       <div>
-        <button 
-          type="button"
-          class="btn btn-danger"
-          (click)="doLogout()"
-        >
-          <b>Logout</b>
-        </button>
-      </div> 
-      
-      </div> -->
+       
       </form>
     </div>
   </div>
 
-  <div class="centerright">
+  <div class="todoDetail">
   <div class="card">
     <div class="card-header">
       <h4>Things you can do.</h4>

@@ -16,10 +16,11 @@ import { auth } from 'firebase/app';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import {FirestoreSettingsToken} from '@angular/fire/firestore';
 import { AuthService } from '/home/pk/ToDo/src/app/auth.service';
-const routes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
+const routes: Routes = [{ path: '', redirectTo: 'userdata', pathMatch: 'full' },
                         { path: 'login', component: UserComponent },
-                        { path: 'userdata', component: ActivityComponent }];
+                        { path: 'userdata', canActivate: [AuthGuard], component: ActivityComponent }];
 
 
 @NgModule({
@@ -44,7 +45,7 @@ const routes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' },
     NgxMaterialTimepickerModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthGuard, AuthService,UserComponent],
+  providers: [AuthGuard, AuthService,UserComponent,{ provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

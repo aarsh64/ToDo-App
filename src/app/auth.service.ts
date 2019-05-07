@@ -12,18 +12,19 @@ export class AuthService {
 
 
 
-  authState: any = null;
+  authState: any;
 
 
   constructor(private afAuth: AngularFireAuth,
-    private router: Router, private auth: AngularFireAuth) {
+    private router: Router) {
 
     this.afAuth.authState.subscribe((auth) => {
+      console.log(auth,'authState firebase');
       this.authState = auth;
     });
 
   }
-  get authenticated(): boolean {
+   getAuthenticated(){
     return this.authState !== null;
   }
   

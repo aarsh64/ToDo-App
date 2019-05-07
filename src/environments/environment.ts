@@ -1,6 +1,6 @@
 import { config } from 'rxjs';
 import * as firebase from 'firebase/app';
-import { pureFunctionV } from '@angular/core/src/render3';
+//import { pureFunctionV } from '@angular/core/src/render3';
 
 
 export const environment = {

@@ -26,8 +26,8 @@ export class UserComponent implements OnInit {
   userForm: FormGroup;
   //email=this.userForm.value.email;
   usersCustomerId: string;
-  constructor(private afAuth: AngularFireAuth,
-    private router: Router, private authService: AuthService, private db: AngularFirestore) {
+  constructor(private authService: AuthService, private afAuth: AngularFireAuth,
+    private router: Router, private db: AngularFirestore) {
 
   }
 
@@ -44,6 +44,7 @@ console.log('Entered in Login');
     this.afAuth.auth.signInWithEmailAndPassword(this.userForm.value.email, this.userForm.value.password).then(
       (success) => {
         console.log('logged in successfullty.');
+        this.afAuth.authState.subscribe(v => console.log(v, 'auth state after login'))
         this.router.navigate(['/userdata']);
         console.log('promise is accepted.');
       });

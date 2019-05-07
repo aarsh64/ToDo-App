@@ -1,12 +1,11 @@
 <div *ngIf="afAuth.user | async as user; else showLogin">
  <nav>
     <a routerLink="/userdata" routerLinkActive="active"></a>
-     <app-activity></app-activity> 
   </nav>
   <router-outlet></router-outlet>
 </div>
 
-<div class="container">
+<div class="container" #showLogin>
   <ng-template #showLogin>
     <form [formGroup]="userForm" class="container">
       <h2 class="card text-white bg-primary mb-3">Login Board</h2>

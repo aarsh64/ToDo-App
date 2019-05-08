@@ -4,18 +4,14 @@
 <div *ngIf="afAuth.user | async as user">
     <nav class="navbar sticky-top navbar-dark bg-info">
         <div class="navbar-header">
-      <h2 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"class="navbar-brand-header"><b>Dashboard</b></h2>
+      <h4 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"class="navbar-brand-header"><b>Dashboard</b></h4>
     </div>
+    
     <div>
-      <a class="navbar-brand"><b>{{user.email}}</b></a>
-    </div>
-    <div>
-      <a class="navbar-brand" data-toggle="tooltip" data-placement="bottom" title="will lead you to your activities"  routerLink="/userdata" routerLinkActive="active"><b>Profile</b></a>
-    </div>
-    <div>
-      <button type="button" data-toggle="tooltip" data-placement="bottom" title="Press it for Logout" class="btn btn-info"  (click)="doLogout()">
-        <b>Logout</b>
-      </button>
+      <a style="font-size: 15px" class="navbar-brand" data-toggle="tooltip" data-placement="bottom" title="will lead you to your activities"  routerLink="/userdata" routerLinkActive="active"><b>Profile</b></a>
+   
+     <a style="font-size: 15px" class="navbar-brand" data-toggle="tooltip" data-placement="bottom" title="Just a click away from logout." routerLink="#" routerLinkActive="active" (click)="doLogout()"><b>Logout</b></a>
+
     </div>
   </nav>
   </div>
@@ -87,7 +83,7 @@
         </div>
       </div>  
        <br>
-        <button type="submit" style="margin-bottom:10px; margin-left:10px;"  class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Just a click away to add new activity" [disabled]="
+        <button type="submit" style="margin-bottom:10px; margin-left:10px;"  class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Just a click away to add new activity" [disabled]="
         !(this.myform.controls.name.valid && this.myform.controls.time.valid)
       " type="submit" (click)="apendAct()">
           Submit
@@ -110,5 +106,18 @@
         <li>You can track your left activities and done activities</li>
       </ul>
     </div>
+    <div style="margin-top:25px;">
+    <div class="card-header ">
+        <h5>Welcome to the Dashboard,</h5>
+        <p style="margin-left: 150px;"><b>{{user.email}}</b><br>
+              </p>
+      </div>
+    </div>
   </div>
 </div>
+
+
+<!-- <div style="margin-top:10px; margin-left:10px;">
+    <p><b>Hello,</b><br><b><span style="margin-left: 10px;margin-top: 05px;">{{user.email}}</span></b>
+    <br><b>the application welcomes you</b></p>
+</div> -->

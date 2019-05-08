@@ -2,32 +2,30 @@
   <a routerLink="/login" routerLinkActive="active"></a>
 </div>
 <div *ngIf="afAuth.user | async as user">
-    <nav class="navbar navbar-dark bg-primary">
+    <nav class="navbar sticky-top navbar-dark bg-info">
         <div class="navbar-header">
-      <a class="navbar-brand" routerLink="/userdata" routerLinkActive="active"><b>Dashboard</b></a>
+      <h2 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"class="navbar-brand-header"><b>Dashboard</b></h2>
     </div>
     <div>
       <a class="navbar-brand"><b>{{user.email}}</b></a>
     </div>
-    <!-- <div>
-      <a class="navbar-brand" routerLinkActive="active" routerLink="/userdata"><b>Profile</b></a>
-    </div> -->
     <div>
-      <button type="button" class="btn brand-primary" (click)="doLogout()">
+      <a class="navbar-brand" data-toggle="tooltip" data-placement="bottom" title="will lead you to your activities"  routerLink="/userdata" routerLinkActive="active"><b>Profile</b></a>
+    </div>
+    <div>
+      <button type="button" data-toggle="tooltip" data-placement="bottom" title="Press it for Logout" class="btn btn-info"  (click)="doLogout()">
         <b>Logout</b>
       </button>
     </div>
   </nav>
-  <!-- <router-outlet></router-outlet> -->
-
-</div>
+  </div>
 
 
 
 <div class="activityContainer" *ngIf="afAuth.user | async as user">
    
   <div class="card">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <nav class="navbar navbar-expand-lg navbar bg-light ">
       <div class="almostleft">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ngb-tabset>
@@ -37,7 +35,7 @@
                   <!-- <li class="nav-item active"><a class="nav-link" href="#" >Left Activities</a></li> -->
                 </ul>
                 <ul class="list-group">
-                  <li class="list-group-item list-group-item-primary" *ngFor="let x of activityMap; let i = index"
+                  <li class="list-group-item list-group-item-info" *ngFor="let x of activityMap; let i = index"
                     (click)="onClick(x, i)">
                     <span><input class="form-check-input" type="checkbox" />{{
                     x.Name
@@ -52,7 +50,7 @@
               <ng-template ngbTabContent>
                 <!-- <li class="nav-item active"><a  class="nav-link" href="#"></a></li> -->
                 <ul class="list-group">
-                  <li class="list-group-item list-group-item-success" *ngFor="let y of deleteMap; let e = index"
+                  <li class="list-group-item list-group-item-info" *ngFor="let y of deleteMap; let e = index"
                     (click)="delItems(y, e)">
                     <span><del><input class="form-check-input" type="checkbox" />{{
                       y.Name
@@ -68,23 +66,24 @@
       </div>
     </nav>
   </div>
+  
   <!-- To Submit new Activities. -->
-  <br />
+  
+  <br/>
   <div class="card">
     <div class="submitCard">
-      <form [formGroup]="myform" novalidate>
+      <form [formGroup]="myform" autocomplete="on"  novalidate>
         <div class="form-group">
           <div class="card-header">
-          <h4>Add Acitivity:</h4>
+          <h4>Add Acitivity :</h4>
         </div>
-          <!-- <label style="float: left;">New Activity:</label>  -->
-
+      
           <input style="width: 50%;margin-top:25px; float:left;" id="t1" class="form-control" formControlName="name"
             type="text" #ac placeholder="Enter the Activity" required />
           <ngb-timepicker size="small" style="width:50%;float:left;" formControlName="time"></ngb-timepicker>
         </div>
-       
-        <button type="submit" class="btn btn-primary" [disabled]="
+       <br>
+        <button type="submit" style="margin-bottom:10px; margin-left:10px;"  class="btn btn-success" [disabled]="
         !(this.myform.controls.name.valid && this.myform.controls.time.valid)
       " type="submit" (click)="apendAct()">
           Submit
@@ -94,15 +93,17 @@
     </div>
   </div>
 
+<!-- The sidebar which displays what users can do here.... -->
+
   <div class="todoDetail">
-  <div class="card">
-    <div class="card-header">
-      <h4>Things you can do.</h4>
+  <div class="card ">
+    <div class="card-header ">
+      <h4>Things you can do here,</h4>
     </div>
       <ul>
         <li>You can add an event.</li>
         <li><del>You can remove the activities/events.</del></li>
-        <li>You can track your current and done activities</li>
+        <li>You can track your left activities and done activities</li>
       </ul>
     </div>
   </div>

@@ -2,43 +2,37 @@ li:hover {
   color: rgb(15, 15, 15);
   background-color: white;
 }
-
-.topright {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  font-size: 15px;
+ul{
+  list-style: none;
+}
+.todoDetail ul li::before{
+  content:'✓';
+}
+/* nav bar font color will be white.... */
+.navbar{
+  color:white;
 }
 
-
 .activityContainer{
-  top:500px;
+  top:550px;
+  /* background-color:rgb(181, 245, 238); */
   widows: 300px;
   margin-right:400px;
   left:50px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
+  transition: 0.3s;
 }
 
 .todoDetail {
     position: absolute;
     top: 60px;
-    right: 30px;
+    right: 05px;
     font-size: 15px;
     text-align:left
   }
-  .topleft{
-    position: absolute;;
-    top:0px;
-    left:0px;
-    font-size: 15px;
-    width: 300px;
-
-  }
+  
   .submitCard{
     left:50px;
+    bottom: 0px;
   }
-  .conainer1 {
-    margin-left: 100%;
-    width: 30%;
-  }
+  

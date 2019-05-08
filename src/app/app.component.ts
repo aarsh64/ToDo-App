@@ -17,13 +17,13 @@ export class AppComponent {
 
 
   constructor(private authService: AuthService, public afAuth: AngularFireAuth,private router:Router) {
-    console.log(this.authService.authState, 'uwuwuwuwuwuw')
+    console.log(this.authService, 'uwuwuwuwuwuw')
   }
 
   
   doLogout() {
     this.afAuth.auth.signOut();
-    this.router.navigate(["/login-logout"]);
+    this.router.navigate(["/login"]);
   }
 }
   

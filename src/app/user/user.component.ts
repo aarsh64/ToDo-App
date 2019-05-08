@@ -31,16 +31,19 @@ export class UserComponent implements OnInit {
 
   }
 
+
   ngOnInit() {
-  
+
     this.userForm = new FormGroup({
+      username: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
   }
 
+
   tryLogin() {
-console.log('Entered in Login');
+    console.log('Entered in Login');
     this.afAuth.auth.signInWithEmailAndPassword(this.userForm.value.email, this.userForm.value.password).then(
       (success) => {
         console.log('logged in successfullty.');
@@ -48,13 +51,15 @@ console.log('Entered in Login');
         this.router.navigate(['/userdata']);
         console.log('promise is accepted.');
       });
-      console.log('just get out of it..');
-      this.userForm.reset();
+    console.log('just get out of it..');
+    this.userForm.reset();
   }
+
 
   signUp() {
 
     //Add Users Credentials to the 'users' database in FireBase....
+
     this.db.collection('users').add({
       email: this.userForm.value.email,
       password: this.userForm.value.password,

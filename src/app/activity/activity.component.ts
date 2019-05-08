@@ -45,7 +45,8 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 
 export class ActivityComponent implements OnInit {
-  @Input() email: string;
+  @Input() username: string;
+
   activityMap = []; //used to get all the activities that are stored in FireBase activities collection...
   deleteMap = []; //used to get all the activities that are moved to doneActivities collection....
   myform: FormGroup;
@@ -64,24 +65,13 @@ export class ActivityComponent implements OnInit {
   final: any;
   constructor(private afAuth: AngularFireAuth, private db: AngularFirestore, private router: Router) {
 
-    //To get uId of the user.....
+    //...............To get uId of the user......................
+
     this.afAuth.authState.subscribe(auth => {
       if (auth) {
         this.usersCustomerId = auth.uid;
         console.log("uID is:", auth.uid);
 
-        //   this.db.collection<any[]>('activities', ref => ref.where('uid', '==', auth.uid))
-        //     .valueChanges().subscribe(
-        //       data => this.activityMap = data
-        //     );
-        // }
-        // this.db.collection<any[]>('doneActivities', ref => ref.where('uid', '==', auth.uid))
-        //   .valueChanges()
-        //   .subscribe(
-        //     data2 => this.deleteMap = data2
-
-        //   );
-        // console.log('Activities done:', this.deleteMap);
 
         this.db
           .collection("doneActivities", ref => ref.where("uid", "==", auth.uid))
@@ -123,9 +113,13 @@ export class ActivityComponent implements OnInit {
       }
     });
   }
+
+
   ngOnInit() {
     console.log("current userId:", this.usersCustomerId);
+
     //.................Form Validation part.......................
+
     this.myform = new FormGroup({
       name: new FormControl("", Validators.required),
       time: new FormControl("", [Validators.required, this.hourValidator])
@@ -163,9 +157,11 @@ export class ActivityComponent implements OnInit {
     return null;
   }
 
+
   onClick(x: any, i: number): void {
     console.log("selected index:", i);
     console.log("x is:", x);
+
     //...........To remove the activity by clicking on it.........
 
     this.doneActs = this.activityMap.splice(i, 1);
@@ -224,6 +220,7 @@ export class ActivityComponent implements OnInit {
   }
 
   //..............To add activities in the list....................
+
   apendAct() {
     this.afAuth.authState.subscribe(auth => {
       // this.usersCustomerId = auth.uid;
@@ -245,10 +242,13 @@ export class ActivityComponent implements OnInit {
       Time: this.myform.value.time,
       uid: this.usersCustomerId
     });
+
     //...............After getting input the form will be reset...............
+
     this.myform.reset();
   }
 
+  //...............Just doing Logout thing................
   doLogout() {
     this.afAuth.auth.signOut();
     this.router.navigate(["/login"]);

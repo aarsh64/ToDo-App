@@ -50,7 +50,7 @@ export class ActivityComponent implements OnInit {
   activityMap = []; //used to get all the activities that are stored in FireBase activities collection...
   deleteMap = []; //used to get all the activities that are moved to doneActivities collection....
   myform: FormGroup;
-  allActivities = Activities; //assigning all the activities to allActivities...
+  allActivities = Activities; //assigning all the activities(which are stored in that array) to allActivities...
   doneActs: Activity[];
   findIndex: number;
   timelap = new Date();
@@ -71,7 +71,7 @@ export class ActivityComponent implements OnInit {
       if (auth) {
         this.usersCustomerId = auth.uid;
         console.log("uID is:", auth.uid);
-
+        //..............................................................
 
         this.db
           .collection("doneActivities", ref => ref.where("uid", "==", auth.uid))
@@ -118,7 +118,7 @@ export class ActivityComponent implements OnInit {
   ngOnInit() {
     console.log("current userId:", this.usersCustomerId);
 
-    //.................Form Validation part.......................
+    //.................add-Activity-Form Validation part.......................
 
     this.myform = new FormGroup({
       name: new FormControl("", Validators.required),
@@ -242,6 +242,7 @@ export class ActivityComponent implements OnInit {
       Time: this.myform.value.time,
       uid: this.usersCustomerId
     });
+    console.log('new activity has been added to the activities collection...');
 
     //...............After getting input the form will be reset...............
 

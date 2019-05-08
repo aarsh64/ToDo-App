@@ -33,7 +33,7 @@ export class UserComponent implements OnInit {
 
 
   ngOnInit() {
-
+    //...........Log-In form validation...............
     this.userForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -58,7 +58,7 @@ export class UserComponent implements OnInit {
 
   signUp() {
 
-    //Add Users Credentials to the 'users' database in FireBase....
+    //Add Users Credentials to the 'users'-collection in FireBase....
 
     this.db.collection('users').add({
       email: this.userForm.value.email,

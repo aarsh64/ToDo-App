@@ -78,12 +78,16 @@
           <h4>Add Acitivity :</h4>
         </div>
       
-          <input style="width: 50%;margin-top:25px; float:left;" id="t1" class="form-control" formControlName="name"
+        <div>  
+          <input style="width: 40%;margin-top:25px; float:left;" id="t1" class="form-control" formControlName="name"
             type="text" #ac placeholder="Enter the Activity" required />
-          <ngb-timepicker size="small" style="width:50%;float:left;" formControlName="time"></ngb-timepicker>
+          </div>
+          <div>
+          <ngb-timepicker size="small" style="margin-left:20px;width:50%;float:left;" formControlName="time"></ngb-timepicker>
         </div>
+      </div>  
        <br>
-        <button type="submit" style="margin-bottom:10px; margin-left:10px;"  class="btn btn-success" [disabled]="
+        <button type="submit" style="margin-bottom:10px; margin-left:10px;"  class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Just a click away to add new activity" [disabled]="
         !(this.myform.controls.name.valid && this.myform.controls.time.valid)
       " type="submit" (click)="apendAct()">
           Submit

@@ -82,16 +82,28 @@ export class UserComponent implements OnInit {
 
     return this.afAuth.auth.createUserWithEmailAndPassword(this.userForm.value.email, this.userForm.value.password).then(
       (success) => {
+       
         // window.alert('New account has been created.');
-        this.toastr.info('Account Successfully Created');
+        this.toastr.info('Account Successfully Created,Better Add data to ignore loader..');
         this.router.navigate(['/userdata']);
+        this.db.collection("activities").add({
+          Name: "Demo",
+          Time:12 ,
+          uid: this.usersCustomerId
+        });
+        this.db.collection("doneActivities").add({
+          Name: "Demo",
+          Time:12 ,
+          uid: this.usersCustomerId
+        });
       }, (error) => {
 
         this.toastr.error('Something must be wrong while Signing Up');
-       // window.alert('The account already exists...');
+        // window.alert('The account already exists...');
         this.router.navigate(['/login']);
       }
     );
+   
     this.userForm.reset();
   }
   // login() {

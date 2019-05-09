@@ -539,3 +539,37 @@ Open repository: /home/pk/ToDo
 > git show :src/app/activity/activity.component.ts
 > git show :src/app/user/user.component.ts
 > git show :src/app/activity/activity.component.ts
+> git show :src/app/user/user.component.ts
+> git show :src/app/activity/activity.component.ts
+> git show :node_modules/rxjs/internal/Observable.d.ts
+> git ls-files --stage -- node_modules/rxjs/internal/
+> git check-ignore -z --stdin
+> git check-ignore -z --stdin
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/user/user.component.ts
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/user/user.component.ts
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/activity/activity.component.html
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/user/user.component.ts
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/user/user.component.ts
+> git show :src/app/activity/activity.component.html
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/activity/activity.component.html
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/activity/activity.component.html
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/activity/activity.component.html
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/activity/activity.component.html
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/activity/activity.component.html
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/activity/activity.component.html
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/activity/activity.component.html
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/activity/activity.component.html
+> git show :src/app/activity/activity.component.ts

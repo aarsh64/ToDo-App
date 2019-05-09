@@ -15,10 +15,11 @@
     </div>
   </nav>
   </div>
-
-
-  
-
+<!-- Loader will roll when the loadingLoop value is set to false.. bydefault it is set to false.. -->
+  <ng-template #loadingLoop>
+      <div class="loader"></div>
+  </ng-template>
+ 
 <div class="activityContainer" *ngIf="afAuth.user | async as user">
     <div *ngIf="loadingData; else loadingLoop">   
   <div class="card">
@@ -65,10 +66,6 @@
   </div>
   
 </div>  
-<ng-template #loadingLoop>
-    <div class="loader"></div>
-
-</ng-template>
 
   <!-- To Submit new Activities. -->
   

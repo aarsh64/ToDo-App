@@ -67,6 +67,7 @@ export class ActivityComponent implements OnInit {
   authID: string;
   final: any;
   loadingData: boolean = false;
+  errorCatch: any;
   constructor(private toastr: ToastrService, private afAuth: AngularFireAuth, private db: AngularFirestore, private router: Router) {
 
     //...............To get uId of the user......................
@@ -88,36 +89,53 @@ export class ActivityComponent implements OnInit {
         //..............................................................
 
         this.db
-          .collection("doneActivities", ref => ref.where("uid", "==", auth.uid))
-          .get()
-          .subscribe(querySnapshot => {
-            querySnapshot.forEach(deleteMap => {
-              this.loadingData = false;
-              console.log(
-                "deleteActivityId is:",
-                `${deleteMap.id} => ${deleteMap.data()}`,
-                deleteMap.data()
-              );
-              this.deleteMap.push({
-                id: deleteMap.id,
-                Name: deleteMap.data().Name,
-                Time: deleteMap.data().Time
-              });
-              console.log("deleteMap value is:", this.deleteMap);
-            });
-          });
-
-        this.db
           .collection("activities", ref => ref.where("uid", "==", auth.uid))
           .get()
           .subscribe(querySnapshot => {
             querySnapshot.forEach(doc => {
-              this.loadingData = true;
+              //  this.loadingData = true;
               console.log(
                 "activityId is:",
                 `${doc.id} => ${doc.data()}`,
                 doc.data()
-              ).catch((err) => {this.loadingData=false; });
+              )
+
+              this.db
+                .collection("doneActivities", ref => ref.where("uid", "==", auth.uid))
+                .get()
+                .subscribe(querySnapshot => {
+                  querySnapshot.forEach(deleteMap => {
+                   // this.loadingData = true;
+                    console.log(
+                      "deleteActivityId is:",
+                      `${deleteMap.id} => ${deleteMap.data()}`,
+                      deleteMap.data()
+                    );
+
+
+                    this.deleteMap.push({
+                      id: deleteMap.id,
+                      Name: deleteMap.data().Name,
+                      Time: deleteMap.data().Time
+                    });
+                    console.log("deleteMap value is:", this.deleteMap);
+                  });
+                  
+                });
+
+               
+
+              // this.errorCatch= this.db
+              // .collection("activities", ref => ref.where("uid", "==", auth.uid))
+              // .get()
+              // .subscribe(querySnapshot => {
+              //   querySnapshot.forEach(doc => {
+              //     this.loadingData = true;
+              //     console.log(
+              //       "activityId is:",
+              //       `${doc.id} => ${doc.data()}`,
+              //       doc.data()
+              //     ).catch((err) => { this.loadingData = false; });;       
 
               this.activityMap.push({
                 id: doc.id,
@@ -130,7 +148,7 @@ export class ActivityComponent implements OnInit {
           });
 
       }
-      this.loadingData = false;
+      this.loadingData=true;
 
       console.log('after the loading', this.loadingData);
     });

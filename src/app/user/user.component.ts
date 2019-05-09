@@ -29,8 +29,7 @@ export class UserComponent implements OnInit {
   userForm: FormGroup;
   //email=this.userForm.value.email;
   usersCustomerId: string;
-  loadUser: boolean = true;
-
+  loadUser: boolean;
   constructor(private toastr: ToastrService, private authService: AuthService, private afAuth: AngularFireAuth,
     private router: Router, private db: AngularFirestore, config: NgbModalConfig, private modalService: NgbModal) {
     config.backdrop = 'static';
@@ -56,19 +55,21 @@ export class UserComponent implements OnInit {
     console.log('Entered in Login');
     this.afAuth.auth.signInWithEmailAndPassword(this.userForm.value.email, this.userForm.value.password).then(
       (success) => {
-        this.loadUser = false;
         console.log('logged in successfullty.');
         this.afAuth.authState.subscribe(v => console.log(v, 'auth state after login'))
         this.router.navigate(['/userdata']);
         this.toastr.success('Logged In Successfully!');
         console.log('promise is accepted.');
+        this.loadUser=false;
+
       }, (error) => {
-        this.toastr.error('Something must be wrong while login!');
-        console.log('there might be some wrong from yourside..');
-        this.router.navigate[('/login')];
+        this.toastr.error(error.message);
+        this.loadUser=false;
+
+       // this.router.navigate[('/login')];
       });
     console.log('just get out of it..');
-    this.userForm.reset();
+    //this.userForm.reset();
   }
 
 
@@ -96,11 +97,14 @@ export class UserComponent implements OnInit {
           Time:12 ,
           uid: this.usersCustomerId
         });
+        this.loadUser=false;
       }, (error) => {
 
-        this.toastr.error('Something must be wrong while Signing Up');
+        this.toastr.error(error.message);
         // window.alert('The account already exists...');
-        this.router.navigate(['/login']);
+        console.log(error);
+        //this.router.navigate(['/login']);
+        this.loadUser=false;
       }
     );
    

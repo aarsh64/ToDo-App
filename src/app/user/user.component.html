@@ -6,29 +6,12 @@
 </div>
 
 
-<div *ngIf="loadUser;else showLogin">
-    <ng-template #loadingLoop>
-        <div class="loader"></div>
-    
-    </ng-template>
+  <div *ngIf="loadUser;else login">   
+      <div class="loader"></div>
+  </div>
 
-</div> 
-
-<ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Error While Login</h4>
-      
-    </div>
-    <div class="modal-body">
-      <p>Access Denied!</p>
-    </div>
-    
-  </ng-template>
-
-
-
-<div class="container" #showLogin>
-  <ng-template #showLogin>
+<ng-template #login>
+<div class="container">
     <form [formGroup]="userForm" autocomplete="on" class="container">
       <h2 class="card text-white bg-info mb-2">Login Board</h2>
    
@@ -61,5 +44,5 @@
         Login
     </button>   
     </form>
-  </ng-template>
 </div> 
+</ng-template>

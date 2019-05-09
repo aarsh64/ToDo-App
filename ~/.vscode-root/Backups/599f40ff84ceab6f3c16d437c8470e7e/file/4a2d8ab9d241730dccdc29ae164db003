@@ -1,3 +1,4 @@
+file:///home/pk/ToDo-App/src/app/activity/activity.component.ts
 import {
   Component,
   OnInit,
@@ -123,7 +124,7 @@ export class ActivityComponent implements OnInit {
                       id: deleteMap.id,
                       Name: deleteMap.data().Name,
                       Time: deleteMap.data().Time
-                    });
+                     });
                     console.log("deleteMap value is:", this.deleteMap);
                   });
 

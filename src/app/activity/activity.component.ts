@@ -37,6 +37,9 @@ import { Subject } from "rxjs";
 import { switchMap } from "rxjs/operator/switchMap";
 import { user } from "../user/user";
 import { Router, NavigationEnd } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
+
 
 @Component({
   selector: "app-activity",
@@ -63,11 +66,22 @@ export class ActivityComponent implements OnInit {
   auth: any;
   authID: string;
   final: any;
-  constructor(private afAuth: AngularFireAuth, private db: AngularFirestore, private router: Router) {
+  loadingData: boolean = false;
+  constructor(private toastr: ToastrService, private afAuth: AngularFireAuth, private db: AngularFirestore, private router: Router) {
 
     //...............To get uId of the user......................
 
+
+  }
+
+
+  ngOnInit() {
+    console.log("current userId:", this.usersCustomerId);
+    this.loadingData = false;
+
+
     this.afAuth.authState.subscribe(auth => {
+
       if (auth) {
         this.usersCustomerId = auth.uid;
         console.log("uID is:", auth.uid);
@@ -78,6 +92,7 @@ export class ActivityComponent implements OnInit {
           .get()
           .subscribe(querySnapshot => {
             querySnapshot.forEach(deleteMap => {
+              this.loadingData = false;
               console.log(
                 "deleteActivityId is:",
                 `${deleteMap.id} => ${deleteMap.data()}`,
@@ -97,11 +112,13 @@ export class ActivityComponent implements OnInit {
           .get()
           .subscribe(querySnapshot => {
             querySnapshot.forEach(doc => {
+              this.loadingData = true;
               console.log(
                 "activityId is:",
                 `${doc.id} => ${doc.data()}`,
                 doc.data()
-              );
+              ).catch((err) => {this.loadingData=false; });
+
               this.activityMap.push({
                 id: doc.id,
                 Name: doc.data().Name,
@@ -109,14 +126,15 @@ export class ActivityComponent implements OnInit {
               });
               console.log("aMap value is:", this.activityMap);
             });
+            ;
           });
+
       }
+      this.loadingData = false;
+
+      console.log('after the loading', this.loadingData);
     });
-  }
 
-
-  ngOnInit() {
-    console.log("current userId:", this.usersCustomerId);
 
     //.................add-Activity-Form Validation part.......................
 
@@ -242,6 +260,8 @@ export class ActivityComponent implements OnInit {
       Time: this.myform.value.time,
       uid: this.usersCustomerId
     });
+    this.toastr.info('New activity is added');
+    this.router.navigate(['/userdata']);
     console.log('new activity has been added to the activities collection...');
 
     //...............After getting input the form will be reset...............
@@ -252,6 +272,7 @@ export class ActivityComponent implements OnInit {
   //...............Just doing Logout thing................
   doLogout() {
     this.afAuth.auth.signOut();
+    this.toastr.success('LoggedOut Succesfullly');
     this.router.navigate(["/login"]);
   }
 }

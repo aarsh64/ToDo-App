@@ -16,18 +16,22 @@ import { auth } from 'firebase/app';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import {FirestoreSettingsToken} from '@angular/fire/firestore';
 import { AuthService } from '/home/pk/ToDo/src/app/auth.service';
 const routes: Routes = [{ path: '', redirectTo: 'userdata', pathMatch: 'full' },
                         { path: 'login', component: UserComponent },
-                        { path: 'userdata', canActivate: [AuthGuard], component: ActivityComponent }];
+                        { path: 'userdata', canActivate: [AuthGuard], component:ActivityComponent }];
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ActivityComponent,
-    UserComponent
+    UserComponent,
+   
     //  AngularFireAuthModule                     
 
   ],
@@ -43,6 +47,8 @@ const routes: Routes = [{ path: '', redirectTo: 'userdata', pathMatch: 'full' },
     AngularFireStorageModule,
     AngularFireAuthModule,
     NgxMaterialTimepickerModule,
+    ToastrModule.forRoot(), // ToastrModule added
+    BrowserAnimationsModule, // required animations module
     RouterModule.forRoot(routes)
   ],
   providers: [AuthGuard, AuthService,UserComponent,{ provide: FirestoreSettingsToken, useValue: {} }],

@@ -15,6 +15,9 @@ import { AuthService } from '../auth.service';
 //import { AngularFireStorage } from '@angular/fire/storage';
 import { FirebaseAuth } from '@angular/fire';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { config } from 'process';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user',
@@ -26,8 +29,12 @@ export class UserComponent implements OnInit {
   userForm: FormGroup;
   //email=this.userForm.value.email;
   usersCustomerId: string;
-  constructor(private authService: AuthService, private afAuth: AngularFireAuth,
-    private router: Router, private db: AngularFirestore) {
+  loadUser: boolean = true;
+
+  constructor(private toastr: ToastrService, private authService: AuthService, private afAuth: AngularFireAuth,
+    private router: Router, private db: AngularFirestore, config: NgbModalConfig, private modalService: NgbModal) {
+    config.backdrop = 'static';
+    config.keyboard = false;
 
   }
 
@@ -39,17 +46,26 @@ export class UserComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
+
+
   }
 
 
   tryLogin() {
+    this.loadUser = true;
     console.log('Entered in Login');
     this.afAuth.auth.signInWithEmailAndPassword(this.userForm.value.email, this.userForm.value.password).then(
       (success) => {
+        this.loadUser = false;
         console.log('logged in successfullty.');
         this.afAuth.authState.subscribe(v => console.log(v, 'auth state after login'))
         this.router.navigate(['/userdata']);
+        this.toastr.success('Logged In Successfully!');
         console.log('promise is accepted.');
+      }, (error) => {
+        this.toastr.error('Something must be wrong while login!');
+        console.log('there might be some wrong from yourside..');
+        this.router.navigate[('/login')];
       });
     console.log('just get out of it..');
     this.userForm.reset();
@@ -57,9 +73,8 @@ export class UserComponent implements OnInit {
 
 
   signUp() {
-
     //Add Users Credentials to the 'users'-collection in FireBase....
-
+    this.loadUser = true;
     this.db.collection('users').add({
       email: this.userForm.value.email,
       password: this.userForm.value.password,
@@ -67,11 +82,21 @@ export class UserComponent implements OnInit {
 
     return this.afAuth.auth.createUserWithEmailAndPassword(this.userForm.value.email, this.userForm.value.password).then(
       (success) => {
-        window.alert('New account has been created.');
+        // window.alert('New account has been created.');
+        this.toastr.info('Account Successfully Created');
+        this.router.navigate(['/userdata']);
+      }, (error) => {
+
+        this.toastr.error('Something must be wrong while Signing Up');
+       // window.alert('The account already exists...');
+        this.router.navigate(['/login']);
       }
     );
     this.userForm.reset();
   }
-
+  // login() {
+  //   this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+  //   this.router.navigate(['/userdata']);
+  // }
 
 }

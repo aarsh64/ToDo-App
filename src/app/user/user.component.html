@@ -5,15 +5,37 @@
   <router-outlet></router-outlet>
 </div>
 
+
+<div *ngIf="loadUser;else showLogin">
+    <ng-template #loadingLoop>
+        <div class="loader"></div>
+    
+    </ng-template>
+
+</div> 
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Error While Login</h4>
+      
+    </div>
+    <div class="modal-body">
+      <p>Access Denied!</p>
+    </div>
+    
+  </ng-template>
+
+
+
 <div class="container" #showLogin>
   <ng-template #showLogin>
     <form [formGroup]="userForm" autocomplete="on" class="container">
       <h2 class="card text-white bg-info mb-2">Login Board</h2>
    
       <div class="form-group">
-        <label>Email address</label>
-        <!--below  ngModel(reflects both side) is used to reflect the emailIDs value in child-component.. -->
-        <input type="email"  placeholder="eg: email@email.com" formControlName="email" class="form-control" required />
+        <label>Email address</label> 
+        <!-- below  ngModel(reflects both side) is used to reflect the emailIDs value in child-component.. -->
+         <input type="email"  placeholder="eg: email@email.com" formControlName="email" class="form-control" required />
       </div>
       <div class="form-group">
         <label>Password</label>
@@ -37,8 +59,7 @@
         )
       " class="btn btn-info">
         Login
-      </button>
-      
+    </button>   
     </form>
   </ng-template>
-</div>
+</div> 

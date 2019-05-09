@@ -17,9 +17,10 @@
   </div>
 
 
+  
 
 <div class="activityContainer" *ngIf="afAuth.user | async as user">
-   
+    <div *ngIf="loadingData; else loadingLoop">   
   <div class="card">
     <nav class="navbar navbar-expand-lg navbar bg-light ">
       <div class="almostleft">
@@ -63,6 +64,12 @@
     </nav>
   </div>
   
+</div>  
+<ng-template #loadingLoop>
+    <div class="loader"></div>
+
+</ng-template>
+
   <!-- To Submit new Activities. -->
   
   <br/>

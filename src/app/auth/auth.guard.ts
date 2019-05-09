@@ -6,7 +6,6 @@ import { AuthService } from '/home/pk/ToDo/src/app/auth.service';
 import { UserComponent } from '/home/pk/ToDo/src/app/user/user.component';
 import { auth } from 'firebase';
 import { map } from 'rxjs/operators';
-//import { ConsoleReporter } from 'jasmine';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +18,6 @@ export class AuthGuard implements CanActivate {
 
 
   }
-
-  // getAuthenticated(){
-  //   return this.authState !== null;
-  // }
 
   canActivate(
     next: ActivatedRouteSnapshot,

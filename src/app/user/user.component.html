@@ -5,10 +5,13 @@
   <router-outlet></router-outlet>
 </div>
 
-
+<!--     Loader part only executes when loadUser is true        -->
+  
   <div *ngIf="loadUser;else login">   
       <div class="loader"></div>
   </div>
+
+<!--                        The Login-Page                            -->
 
 <ng-template #login>
 <div class="container">

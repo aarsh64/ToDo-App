@@ -70,69 +70,71 @@ export class ActivityComponent implements OnInit {
   errorCatch: any;
   constructor(private toastr: ToastrService, private afAuth: AngularFireAuth, private db: AngularFirestore, private router: Router) {
 
-    //...............To get uId of the user......................
 
 
   }
 
 
   ngOnInit() {
+
     console.log("current userId:", this.usersCustomerId);
     this.loadingData = false;
 
+    //...............To get uId of the user......................
 
     this.afAuth.authState.subscribe(auth => {
 
       if (auth) {
         this.usersCustomerId = auth.uid;
         console.log("uID is:", auth.uid);
-        //..............................................................
+
+        //..................To fetch data of specific user based on the uID...............
 
         this.db
           .collection("activities", ref => ref.where("uid", "==", auth.uid))
           .get()
           .subscribe(querySnapshot => {
             querySnapshot.forEach(doc => {
-                this.loadingData = false;
+              this.loadingData = false;
               console.log(
                 "activityId is:",
                 `${doc.id} => ${doc.data()}`,
                 doc.data()
               )
-              
+
               this.activityMap.push({
                 id: doc.id,
                 Name: doc.data().Name,
                 Time: doc.data().Time
               });
-            });  
-              console.log("aMap value is:", this.activityMap);
-
-              this.db
-                .collection("doneActivities", ref => ref.where("uid", "==", auth.uid))
-                .get()
-                .subscribe(querySnapshot => {
-                  querySnapshot.forEach(deleteMap => {
-                    this.loadingData = true;
-                    console.log(
-                      "deleteActivityId is:",
-                      `${deleteMap.id} => ${deleteMap.data()}`,
-                      deleteMap.data()
-                    );
-                     this.deleteMap.push({
-                      id: deleteMap.id,
-                      Name: deleteMap.data().Name,
-                      Time: deleteMap.data().Time
-                    });
-                    console.log("deleteMap value is:", this.deleteMap);
-                  });
-
-                });
-             this.loadingData=true;
             });
-            ;
-        }
-      
+            console.log("aMap value is:", this.activityMap);
+
+            this.db
+              .collection("doneActivities", ref => ref.where("uid", "==", auth.uid))
+              .get()
+              .subscribe(querySnapshot => {
+                querySnapshot.forEach(deleteMap => {
+                  this.loadingData = true;
+                  console.log(
+                    "deleteActivityId is:",
+                    `${deleteMap.id} => ${deleteMap.data()}`,
+                    deleteMap.data()
+                  );
+                  this.deleteMap.push({
+                    id: deleteMap.id,
+                    Name: deleteMap.data().Name,
+                    Time: deleteMap.data().Time
+                  });
+                  console.log("deleteMap value is:", this.deleteMap);
+                });
+
+              });
+            this.loadingData = true;
+          });
+        ;
+      }
+
 
       console.log('after the loading', this.loadingData);
     });
@@ -145,18 +147,18 @@ export class ActivityComponent implements OnInit {
       time: new FormControl("", [Validators.required, this.hourValidator])
     });
 
-    {
-      this.findIndex = this.activityMap.findIndex(
-        obj => obj.Time.hour < this.systemHour
-      );
-      while (this.findIndex !== -1) {
-        this.activityMap.splice(this.findIndex, 1);
-        this.findIndex = this.activityMap.findIndex(
-          obj => obj.Time.hour < this.systemHour
-        );
-        console.log(this.findIndex);
-      }
-    }
+    // {   Validtion function which was used when the input was taken from an array stored locally......
+    //   this.findIndex = this.activityMap.findIndex(
+    //     obj => obj.Time.hour < this.systemHour
+    //   );
+    //   while (this.findIndex !== -1) {
+    //     this.activityMap.splice(this.findIndex, 1);
+    //     this.findIndex = this.activityMap.findIndex(
+    //       obj => obj.Time.hour < this.systemHour
+    //     );
+    //     console.log(this.findIndex);
+    //   }
+    // }
   }
 
   //.............To Validate that user cant input past time in ngTimePikcer in Form...................
@@ -263,7 +265,6 @@ export class ActivityComponent implements OnInit {
       uid: this.usersCustomerId
     });
     this.toastr.info('New activity is added');
-    this.router.navigate(['/userdata']);
     console.log('new activity has been added to the activities collection...');
 
     //...............After getting input the form will be reset...............

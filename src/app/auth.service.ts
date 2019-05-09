@@ -4,7 +4,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { UserComponent } from './user/user.component';
 import { Http, HttpModule } from '@angular/http';
-//import { ConsoleReporter } from 'jasmine';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,8 +13,9 @@ export class AuthService {
 
   authState: any;
 
-
-  constructor(private afAuth: AngularFireAuth,
+//.......Actually the AuthService not required after the authguard function is changed......
+  
+constructor(private afAuth: AngularFireAuth,
     private router: Router) {
 
     this.afAuth.authState.subscribe((auth) => {

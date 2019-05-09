@@ -10,9 +10,7 @@ import { getTNode } from '@angular/core/src/render3/util';
 import { getOrCreateCurrentQueries } from '@angular/core/src/render3/state';
 import { useAnimation } from '@angular/animations';
 import { user } from './user';
-//import { ConsoleReporter } from 'jasmine';
 import { AuthService } from '../auth.service';
-//import { AngularFireStorage } from '@angular/fire/storage';
 import { FirebaseAuth } from '@angular/fire';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -27,9 +25,8 @@ import { ToastrService } from 'ngx-toastr';
 export class UserComponent implements OnInit {
 
   userForm: FormGroup;
-  //email=this.userForm.value.email;
   usersCustomerId: string;
-  loadUser: boolean;
+  loadUser: boolean; //declared for loader purpose....
   constructor(private toastr: ToastrService, private authService: AuthService, private afAuth: AngularFireAuth,
     private router: Router, private db: AngularFirestore, config: NgbModalConfig, private modalService: NgbModal) {
     config.backdrop = 'static';
@@ -49,6 +46,7 @@ export class UserComponent implements OnInit {
 
   }
 
+  //.......Login button will activate this function.....
 
   tryLogin() {
     this.loadUser = true;
@@ -60,21 +58,21 @@ export class UserComponent implements OnInit {
         this.router.navigate(['/userdata']);
         this.toastr.success('Logged In Successfully!');
         console.log('promise is accepted.');
-        this.loadUser=false;
+        this.loadUser = false;
 
       }, (error) => {
         this.toastr.error(error.message);
-        this.loadUser=false;
-
-       // this.router.navigate[('/login')];
+        this.loadUser = false;
       });
     console.log('just get out of it..');
-    //this.userForm.reset();
   }
 
+  //...........Sign Up button will activate this fucntion..............
 
   signUp() {
-    //Add Users Credentials to the 'users'-collection in FireBase....
+
+    //..........Add Users Credentials to the 'users'-collection in FireBase....
+
     this.loadUser = true;
     this.db.collection('users').add({
       email: this.userForm.value.email,
@@ -83,36 +81,30 @@ export class UserComponent implements OnInit {
 
     return this.afAuth.auth.createUserWithEmailAndPassword(this.userForm.value.email, this.userForm.value.password).then(
       (success) => {
-       
-        // window.alert('New account has been created.');
+
         this.toastr.info('Account Successfully Created.');
         this.router.navigate(['/userdata']);
         this.db.collection("activities").add({
           Name: "Demo",
-          Time:12 ,
+          Time: 12,
           uid: this.usersCustomerId
         });
         this.db.collection("doneActivities").add({
           Name: "Demo",
-          Time:12 ,
+          Time: 12,
           uid: this.usersCustomerId
         });
-        this.loadUser=false;
+        this.loadUser = false;
       }, (error) => {
 
         this.toastr.error(error.message);
-        // window.alert('The account already exists...');
         console.log(error);
-        //this.router.navigate(['/login']);
-        this.loadUser=false;
+        this.loadUser = false;
       }
     );
-   
+
     this.userForm.reset();
   }
-  // login() {
-  //   this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
-  //   this.router.navigate(['/userdata']);
-  // }
+
 
 }

@@ -31,9 +31,6 @@ const routes: Routes = [{ path: '', redirectTo: 'userdata', pathMatch: 'full' },
     AppComponent,
     ActivityComponent,
     UserComponent,
-   
-    //  AngularFireAuthModule                     
-
   ],
   imports: [
     BrowserModule,
@@ -41,14 +38,13 @@ const routes: Routes = [{ path: '', redirectTo: 'userdata', pathMatch: 'full' },
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    //hourValidatorDirective,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
     NgxMaterialTimepickerModule,
     ToastrModule.forRoot(), // ToastrModule added
-    BrowserAnimationsModule, // required animations module
+    BrowserAnimationsModule, // required animations module for loader..
     RouterModule.forRoot(routes)
   ],
   providers: [AuthGuard, AuthService,UserComponent,{ provide: FirestoreSettingsToken, useValue: {} }],

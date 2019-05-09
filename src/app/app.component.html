@@ -1,3 +1,5 @@
+
+<!--         For Google Authentication bellow code is used...          -->
 <!-- <div>
 
   <div *ngIf="afAuth.user | async as user; else showLogin">
@@ -12,25 +14,20 @@
     <p>Please login to get the data.</p>
     <button class="btn btn-primary" (click)="login()">Login with Google</button>
   </ng-template> -->
+<!--  ....................................................................... -->
 
 
-
-  <div >
+<div>
   <nav>
-    <!-- <a routerLink="/crisis-center" routerLinkActive="active">Crisis Center</a> -->
      <a routerLink="/login" routerLinkActive="active"></a>
      <a routerLink='/userdata' routerLinkActive="active"></a>
   </nav>
 <router-outlet></router-outlet>
 </div>
-<div  class="bottomright">
-  
-    <h6>Ⓒaarsh_inc</h6>
- </div>
 
-<ng-template #showLogin>
-  <p>Please login to get the data.</p>
-  <button class="btn btn-primary" (click)="login()">Login with Google</button>
-</ng-template>
+
+<div class="bottomright">
+  <h6>Ⓒaarsh_inc</h6>
+</div>
 
 

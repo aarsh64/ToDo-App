@@ -99,6 +99,14 @@ export class ActivityComponent implements OnInit {
                 `${doc.id} => ${doc.data()}`,
                 doc.data()
               )
+              
+              this.activityMap.push({
+                id: doc.id,
+                Name: doc.data().Name,
+                Time: doc.data().Time
+              });
+            });  
+              console.log("aMap value is:", this.activityMap);
 
               this.db
                 .collection("doneActivities", ref => ref.where("uid", "==", auth.uid))
@@ -122,30 +130,10 @@ export class ActivityComponent implements OnInit {
                   });
                   
                 });
-
-               
-
-              // this.errorCatch= this.db
-              // .collection("activities", ref => ref.where("uid", "==", auth.uid))
-              // .get()
-              // .subscribe(querySnapshot => {
-              //   querySnapshot.forEach(doc => {
-              //     this.loadingData = true;
-              //     console.log(
-              //       "activityId is:",
-              //       `${doc.id} => ${doc.data()}`,
-              //       doc.data()
-              //     ).catch((err) => { this.loadingData = false; });;       
-
-              this.activityMap.push({
-                id: doc.id,
-                Name: doc.data().Name,
-                Time: doc.data().Time
-              });
-              console.log("aMap value is:", this.activityMap);
+             
             });
             ;
-          });
+         
 
       }
       this.loadingData=true;

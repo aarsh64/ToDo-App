@@ -573,3 +573,8 @@ Open repository: /home/pk/ToDo
 > git show :src/app/activity/activity.component.ts
 > git show :src/app/activity/activity.component.html
 > git show :src/app/activity/activity.component.ts
+> git check-ignore -z --stdin
+> git show :src/app/user/user.component.ts
+> git show :src/app/activity/activity.component.ts
+> git show :src/app/activity/activity.component.html
+> git show :src/app/activity/activity.component.ts

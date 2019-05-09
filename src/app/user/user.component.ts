@@ -84,7 +84,7 @@ export class UserComponent implements OnInit {
       (success) => {
        
         // window.alert('New account has been created.');
-        this.toastr.info('Account Successfully Created,Better Add data to ignore loader..');
+        this.toastr.info('Account Successfully Created.');
         this.router.navigate(['/userdata']);
         this.db.collection("activities").add({
           Name: "Demo",
